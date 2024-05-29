@@ -102,7 +102,9 @@ class Exp_crossformer(Exp_Basic):
             os.makedirs(path)
         with open(os.path.join(path, "args.json"), 'w') as f:
             json.dump(vars(self.args), f, indent=True)
-        scale_statistic = {'mean': train_data.scaler.mean, 'std': train_data.scaler.std}
+        
+        scale_statistic = {'min': train_data.scaler.data_min_, 'max': train_data.scaler.data_max_}
+        # scale_statistic = {'mean': train_data.scaler.mean, 'std': train_data.scaler.std}
         with open(os.path.join(path, "scale_statistic.pkl"), 'wb') as f:
             pickle.dump(scale_statistic, f)
         

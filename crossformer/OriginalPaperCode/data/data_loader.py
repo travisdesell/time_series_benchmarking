@@ -4,6 +4,7 @@ import pandas as pd
 
 import torch
 from torch.utils.data import Dataset, DataLoader
+from sklearn.preprocessing import MinMaxScaler
 
 from utils.tools import StandardScaler
 
@@ -49,6 +50,21 @@ class Dataset_MTS(Dataset):
         cols_data = df_raw.columns[1:]
         df_data = df_raw[cols_data]
 
+        # New way of scalling - MinMaxScaler
+        if self.scale:
+            if self.scale_statistic is None:
+                self.scaler = MinMaxScaler()
+                train_data = df_data[border1s[0]:border2s[0]]
+                self.scaler.fit(train_data.values)
+            else:
+                self.scaler = MinMaxScaler(feature_range=(self.scale_statistic['min'], self.scale_statistic['max']))
+            data = self.scaler.transform(df_data.values)
+        else:
+            data = df_data.values
+
+        """
+        # Original code snippet - commented out
+        # This was responsible for scaling the data
         if self.scale:
             if self.scale_statistic is None:
                 self.scaler = StandardScaler()
@@ -59,7 +75,8 @@ class Dataset_MTS(Dataset):
             data = self.scaler.transform(df_data.values)
         else:
             data = df_data.values
-
+        
+        """
         self.data_x = data[border1:border2]
         self.data_y = data[border1:border2]
     
