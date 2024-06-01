@@ -161,4 +161,4 @@ cython_debug/
 
 # Added by MysteriousVoid for keeping the dataset in the local directory only.
 crossformer/Data shared/
-crossformer/OriginalPaperCode/datasets/My Data/
+crossformer/OriginalPaperCode/datasets/my_data/
