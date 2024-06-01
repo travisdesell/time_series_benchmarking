@@ -162,7 +162,7 @@ class Exp_crossformer(Exp_Basic):
         
         return self.model
 
-    def test(self, setting, save_pred = False, inverse = False):
+    def test(self, setting, save_pred = False, inverse = True): # inverse = False for the original code
         test_data, test_loader = self._get_data(flag='test')
         
         self.model.eval()
