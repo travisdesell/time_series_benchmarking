@@ -17,7 +17,7 @@ parser.add_argument('--batch_size', type=int, default=32, help='batch size of tr
 parser.add_argument('--different_split', action='store_true', help='use data split different from training process', default=False)
 parser.add_argument('--data_split', type=str, default='0.7,0.1,0.2', help='data split of train, vali, test')
 
-parser.add_argument('--inverse', action='store_true', help='inverse output data into the original scale', default=False)
+parser.add_argument('--inverse', action='store_true', help='inverse output data into the original scale', default=False) # default=False is the original value
 parser.add_argument('--save_pred', action='store_true', help='whether to save the predicted future MTS', default=True) # default=False is the original value
 
 parser.add_argument('--use_gpu', type=bool, default=True, help='use gpu')

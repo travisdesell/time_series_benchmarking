@@ -30,7 +30,7 @@ parser.add_argument('--baseline', action='store_true', help='whether to use mean
 
 parser.add_argument('--num_workers', type=int, default=0, help='data loader num workers')
 parser.add_argument('--batch_size', type=int, default=32, help='batch size of train input data')
-parser.add_argument('--train_epochs', type=int, default=20, help='train epochs')
+parser.add_argument('--train_epochs', type=int, default=1, help='train epochs')
 parser.add_argument('--patience', type=int, default=3, help='early stopping patience')
 parser.add_argument('--learning_rate', type=float, default=1e-4, help='optimizer initial learning rate')
 parser.add_argument('--lradj', type=str, default='type1',help='adjust learning rate')
@@ -55,7 +55,7 @@ if args.use_gpu and args.use_multi_gpu:
     print(args.gpu)
 
 data_parser = {
-    'ETTh1':{'data':'ETTh1.csv', 'data_dim':7, 'split':[12*30*24, 4*30*24, 4*30*24]},
+    'ETTh1':{'data':'/Users/md/Library/CloudStorage/OneDrive-Personal/Mohit/RIT/trading/codebases/stockPredict/time_series_benchmarking/crossformer/OriginalPaperCode/datasets/ETTh1.csv', 'data_dim':7, 'split':[12*30*24, 4*30*24, 4*30*24]},
     'ETTm1':{'data':'ETTm1.csv', 'data_dim':7, 'split':[4*12*30*24, 4*4*30*24, 4*4*30*24]},
     'WTH':{'data':'WTH.csv', 'data_dim':12, 'split':[28*30*24, 10*30*24, 10*30*24]},
     'ECL':{'data':'ECL.csv', 'data_dim':321, 'split':[15*30*24, 3*30*24, 4*30*24]},

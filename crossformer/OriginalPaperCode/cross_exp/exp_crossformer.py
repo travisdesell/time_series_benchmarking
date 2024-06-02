@@ -162,7 +162,7 @@ class Exp_crossformer(Exp_Basic):
         
         return self.model
 
-    def test(self, setting, save_pred = False, inverse = True): # inverse = False for the original code
+    def test(self, setting, save_pred = False, inverse = False): # inverse = False for the original code
         test_data, test_loader = self._get_data(flag='test')
         
         self.model.eval()
@@ -210,9 +210,22 @@ class Exp_crossformer(Exp_Basic):
 
         outputs = self.model(batch_x)
 
+        # print("Shape of outputs:", outputs.shape)
+
+        # if inverse:
+        #     outputs = dataset_object.inverse_transform(outputs)
+        #     batch_y = dataset_object.inverse_transform(batch_y)
+
         if inverse:
+            original_shape_outputs = outputs.shape
+            outputs = outputs.reshape(-1, original_shape_outputs[-1])
             outputs = dataset_object.inverse_transform(outputs)
+            outputs = outputs.reshape(original_shape_outputs)
+
+            original_shape_batch_y = batch_y.shape
+            batch_y = batch_y.reshape(-1, original_shape_batch_y[-1])
             batch_y = dataset_object.inverse_transform(batch_y)
+            batch_y = batch_y.reshape(original_shape_batch_y)
 
         return outputs, batch_y
     
