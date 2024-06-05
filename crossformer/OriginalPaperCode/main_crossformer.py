@@ -87,4 +87,4 @@ for ii in range(args.itr):
     exp.train(setting)
     
     print('>>>>>>>testing : {}<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<'.format(setting))
-    exp.test(setting, args.save_pred)
+    exp.test(setting, args.save_pred,inverse=False) # Inverse= True to inverse the scaling of the output data
