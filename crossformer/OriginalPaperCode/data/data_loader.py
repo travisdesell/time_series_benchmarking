@@ -1,10 +1,12 @@
 import os
 import numpy as np
 import pandas as pd
+import pickle
 
 import torch
 from torch.utils.data import Dataset, DataLoader
 from sklearn.preprocessing import MinMaxScaler
+
 
 from utils.tools import StandardScaler
 
@@ -51,13 +53,18 @@ class Dataset_MTS(Dataset):
         df_data = df_raw[cols_data]
 
         # New way of scalling - MinMaxScaler
-        if self.scale:
-            if self.scale_statistic is None:
-                self.scaler = MinMaxScaler()
-                train_data = df_data[border1s[0]:border2s[0]]
-                self.scaler.fit(train_data.values)
-            else:
-                self.scaler = MinMaxScaler(feature_range=(self.scale_statistic['min'], self.scale_statistic['max']))
+        if self.scale:           
+            self.scaler = MinMaxScaler()
+            train_data = df_data[border1s[0]:border2s[0]]
+            self.scaler.fit(train_data.values)
+            # with open("/Users/md/Library/CloudStorage/OneDrive-Personal/Mohit/RIT/trading/codebases/stockPredict/time_series_benchmarking/checkpoints/Crossformer_ETTh1_il168_ol24_sl6_win2_fa10_dm256_nh4_el3_itr0/scale_statistic.pkl", 'rb') as f:
+            #     scale_statistic = pickle.load(f)
+            
+            # print("Scale Statistic: ", scale_statistic)
+            # self.scaler = MinMaxScaler()
+            # self.scaler.min_ = scale_statistic['min']
+            # self.scaler.scale_ = 1.0 / (scale_statistic['max'] - scale_statistic['min'])
+
             data = self.scaler.transform(df_data.values)
         else:
             data = df_data.values
@@ -77,9 +84,10 @@ class Dataset_MTS(Dataset):
             data = df_data.values
         
         """
+        
         self.data_x = data[border1:border2]
         self.data_y = data[border1:border2]
-    
+
     def __getitem__(self, index):
         s_begin = index
         s_end = s_begin + self.in_len

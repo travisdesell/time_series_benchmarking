@@ -36,7 +36,7 @@ parser.add_argument('--learning_rate', type=float, default=1e-4, help='optimizer
 parser.add_argument('--lradj', type=str, default='type1',help='adjust learning rate')
 parser.add_argument('--itr', type=int, default=1, help='experiments times')
 
-parser.add_argument('--save_pred', action='store_true', help='whether to save the predicted future MTS', default=False)
+parser.add_argument('--save_pred', action='store_true', help='whether to save the predicted future MTS', default=True)
 
 parser.add_argument('--use_gpu', type=bool, default=True, help='use gpu')
 parser.add_argument('--gpu', type=int, default=0, help='gpu')

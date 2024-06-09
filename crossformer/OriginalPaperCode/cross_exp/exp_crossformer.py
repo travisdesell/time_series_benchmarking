@@ -103,8 +103,9 @@ class Exp_crossformer(Exp_Basic):
         with open(os.path.join(path, "args.json"), 'w') as f:
             json.dump(vars(self.args), f, indent=True)
         
-        scale_statistic = {'min': train_data.scaler.data_min_, 'max': train_data.scaler.data_max_}
-        # scale_statistic = {'mean': train_data.scaler.mean, 'std': train_data.scaler.std}
+        scale_statistic = {'min': train_data.scaler.data_min_, 'max': train_data.scaler.data_max_} # MinMaxScaler - New code
+        # scale_statistic = {'mean': train_data.scaler.mean, 'std': train_data.scaler.std} # StandardScaler - Original code
+
         with open(os.path.join(path, "scale_statistic.pkl"), 'wb') as f:
             pickle.dump(scale_statistic, f)
         
@@ -217,6 +218,7 @@ class Exp_crossformer(Exp_Basic):
         #     batch_y = dataset_object.inverse_transform(batch_y)
 
         if inverse:
+            print("Inverse scaling! It should not run! - 8 June 2024")
             original_shape_outputs = outputs.shape
             outputs = outputs.reshape(-1, original_shape_outputs[-1])
             outputs = dataset_object.inverse_transform(outputs)
