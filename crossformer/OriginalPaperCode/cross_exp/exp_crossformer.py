@@ -189,7 +189,7 @@ class Exp_crossformer(Exp_Basic):
         metrics_mean = metrics_all.sum(axis = 0) / instance_num
 
         # result save
-        folder_path = './results/' + setting +'/'
+        folder_path = './crossformer/OriginalPaperCode/results/' + setting +'/'
         if not os.path.exists(folder_path):
             os.makedirs(folder_path)
 
@@ -274,7 +274,7 @@ class Exp_crossformer(Exp_Basic):
         metrics_mean = metrics_all.sum(axis = 0) / instance_num
 
         # result save
-        folder_path = './results/' + setting +'/'
+        folder_path = './crossformer/OriginalPaperCode/results/' + setting +'/'
         if not os.path.exists(folder_path):
             os.makedirs(folder_path)
 

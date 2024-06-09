@@ -11,7 +11,7 @@ parser.add_argument('--data', type=str, required=True, default='ETTh1', help='da
 parser.add_argument('--root_path', type=str, default='./datasets/', help='root path of the data file')
 parser.add_argument('--data_path', type=str, default='ETTh1.csv', help='data file')  
 parser.add_argument('--data_split', type=str, default='0.7,0.1,0.2',help='train/val/test split, can be ratio or number')
-parser.add_argument('--checkpoints', type=str, default='./checkpoints/', help='location to store model checkpoints')
+parser.add_argument('--checkpoints', type=str, default='./crossformer/OriginalPaperCode/checkpoints/', help='location to store model checkpoints') # Path: ./checkpoints/ in OriginalPaperCode
 
 parser.add_argument('--in_len', type=int, default=96, help='input MTS length (T)')
 parser.add_argument('--out_len', type=int, default=24, help='output MTS length (\tau)')

@@ -8,7 +8,7 @@ from utils.tools import load_args, string_split
 
 parser = argparse.ArgumentParser(description='CrossFormer')
 
-parser.add_argument('--checkpoint_root', type=str, default='./checkpoints', help='location of the trained model')
+parser.add_argument('--checkpoint_root', type=str, default = './crossformer/OriginalPaperCode/checkpoints/', help='location of the trained model') # Path: ./checkpoints/ in OriginalPaperCode
 parser.add_argument('--setting_name', type=str, default='Crossformer_ETTh1_il168_ol24_sl6_win2_fa10_dm256_nh4_el3_itr0', help='name of the experiment')
 
 parser.add_argument('--num_workers', type=int, default=0, help='data loader num workers')
@@ -28,6 +28,9 @@ args = parser.parse_args()
 args.use_gpu = True if torch.cuda.is_available() and args.use_gpu else False
 args.use_multi_gpu = False
 
+print(f"Args: {args}")
+args.checkpoint_root = './crossformer/OriginalPaperCode/checkpoints/'
+print(f"Args: {args}")
 args.checkpoint_dir = os.path.join(args.checkpoint_root, args.setting_name)
 hyper_parameters = load_args(os.path.join(args.checkpoint_dir, 'args.json'))
 
@@ -51,7 +54,7 @@ else:
 
 mae, mse, rmse, mape, mspe = exp.eval(args.setting_name, args.save_pred, args.inverse)
 
-folder_path = './results/' + args.setting_name +'/'
+folder_path = './crossformer/OriginalPaperCode/results/' + args.setting_name +'/'
 if not os.path.exists(folder_path):
     os.makedirs(folder_path)
 log_file = open(folder_path+'metric.log', 'w')
