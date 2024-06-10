@@ -211,23 +211,22 @@ class Exp_crossformer(Exp_Basic):
 
         outputs = self.model(batch_x)
 
-        # print("Shape of outputs:", outputs.shape)
-
+        ## Original code
         # if inverse:
         #     outputs = dataset_object.inverse_transform(outputs)
         #     batch_y = dataset_object.inverse_transform(batch_y)
 
+        ## New code
         if inverse:
-            print("Inverse scaling! It should not run! - 8 June 2024")
             original_shape_outputs = outputs.shape
-            outputs = outputs.reshape(-1, original_shape_outputs[-1])
+            outputs = outputs.detach().cpu().numpy().reshape(-1, original_shape_outputs[-1])
             outputs = dataset_object.inverse_transform(outputs)
-            outputs = outputs.reshape(original_shape_outputs)
+            outputs = torch.from_numpy(outputs.reshape(original_shape_outputs)).to(self.device)
 
             original_shape_batch_y = batch_y.shape
-            batch_y = batch_y.reshape(-1, original_shape_batch_y[-1])
+            batch_y = batch_y.detach().cpu().numpy().reshape(-1, original_shape_batch_y[-1])
             batch_y = dataset_object.inverse_transform(batch_y)
-            batch_y = batch_y.reshape(original_shape_batch_y)
+            batch_y = torch.from_numpy(batch_y.reshape(original_shape_batch_y)).to(self.device)
 
         return outputs, batch_y
     
