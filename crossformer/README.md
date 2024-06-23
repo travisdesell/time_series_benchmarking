@@ -31,16 +31,16 @@ Here is the directory structure for this project -
 In this section, we will showcase the results obtained by reproducing the Crossformer model. We will provide details on the performance metrics achieved and compare them with the results reported in the original paper.
 
 Results 8 June 2024:
-![Results 8 June 2024](./crossformer/progress/Results_8_June_2024.png)
-[Full Report](./crossformer/progress/Progress_v1_8_June_2024.pdf)
+![Results 8 June 2024](./progress/Results_8_June_2024.png)
+[Full Report](./progress/Progress_v1_8_June_2024.pdf)
 
 Plots:
 
 Result 3 - ETTH data plot:
-![Result3](./crossformer/progress/R3_ETTH_plot.png)
+![Result3](./progress/R3_ETTH_plot.png)
 
 Result 4 - AKAM data plot:
-![Result4](./crossformer/progress/R4_AKAM_plot.png)
+![Result4](./progress/R4_AKAM_plot.png)
 
 ## Changes and Updates
 
