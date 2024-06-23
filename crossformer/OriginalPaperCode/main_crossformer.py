@@ -54,14 +54,16 @@ if args.use_gpu and args.use_multi_gpu:
     args.gpu = args.device_ids[0]
     print(args.gpu)
 
+data_path_md = '/Users/md/Library/CloudStorage/OneDrive-Personal/Mohit/RIT/trading/codebases/stockPredict/time_series_benchmarking/crossformer'
+
 data_parser = {
-    'ETTh1':{'data':'/Users/md/Library/CloudStorage/OneDrive-Personal/Mohit/RIT/trading/codebases/stockPredict/time_series_benchmarking/crossformer/OriginalPaperCode/datasets/ETTh1.csv', 'data_dim':7, 'split':[12*30*24, 4*30*24, 4*30*24]},
+    'ETTh1':{'data':data_path_md + '/OriginalPaperCode/datasets/ETTh1.csv', 'data_dim':7, 'split':[12*30*24, 4*30*24, 4*30*24]},
     'ETTm1':{'data':'ETTm1.csv', 'data_dim':7, 'split':[4*12*30*24, 4*4*30*24, 4*4*30*24]},
     'WTH':{'data':'WTH.csv', 'data_dim':12, 'split':[28*30*24, 10*30*24, 10*30*24]},
     'ECL':{'data':'ECL.csv', 'data_dim':321, 'split':[15*30*24, 3*30*24, 4*30*24]},
     'ILI':{'data':'national_illness.csv', 'data_dim':7, 'split':[0.7, 0.1, 0.2]},
     'Traffic':{'data':'traffic.csv', 'data_dim':862, 'split':[0.7, 0.1, 0.2]},
-    'stock_AKAM':{'data':'/Users/md/Library/CloudStorage/OneDrive-Personal/Mohit/RIT/trading/codebases/stockPredict/time_series_benchmarking/crossformer/OriginalPaperCode/datasets/my_data/AKAM_filtered_data.csv', 'data_dim':6, 'split':[0.7, 0.1, 0.2]}
+    'stock_AKAM':{'data':data_path_md + '/OriginalPaperCode/datasets/my_data/AKAM_filtered_data.csv', 'data_dim':6, 'split':[0.7, 0.1, 0.2]}
 }
 if args.data in data_parser.keys():
     data_info = data_parser[args.data]
